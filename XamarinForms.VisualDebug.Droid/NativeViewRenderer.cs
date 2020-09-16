@@ -1,6 +1,12 @@
 ﻿using System;
+using System.IO;
+using Android.Content;
+using Android.Graphics;
+using Android.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using XamarinForms.VisualDebug.Core;
+using View = Android.Views.View;
 
 [assembly: Dependency(typeof(XamarinForms.VisualDebug.Droid.NativeViewRenderer))]
 namespace XamarinForms.VisualDebug.Droid
@@ -13,43 +19,59 @@ namespace XamarinForms.VisualDebug.Droid
 
         public byte[] Render(VisualElement view)
         {
-            var viewGroup = ConvertToNative(view);
+            View nativeView = this.ConvertToNative(view);
 
-            var originalCacheEnabledState = viewGroup.DrawingCacheEnabled;
+            if (view.Width < 0 || view.Height < 0)
+            {
+                return new byte[0];
+            }
 
-            viewGroup.DrawingCacheEnabled = true;
+            Bitmap image = this.BitmapFromView(nativeView);
 
-            var drawingCache = viewGroup.GetDrawingCache(false);
-
-            var image = Android.Graphics.Bitmap.CreateBitmap(drawingCache);
-
-            viewGroup.DrawingCacheEnabled = originalCacheEnabledState;
-
-            using (var stream = new System.IO.MemoryStream())
+            using (MemoryStream stream = new System.IO.MemoryStream())
             {
                 image.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 0, stream);
-                var imageBytes = stream.ToArray();
+                
+                byte[] imageBytes = stream.ToArray();
+                
                 return imageBytes;
             }
         }
 
+        public Android.Graphics.Bitmap BitmapFromView(Android.Views.View nativeView)
+        {
+            Android.Graphics.Bitmap bitmap = Android.Graphics.Bitmap.CreateBitmap(nativeView.Width, nativeView.Height, Android.Graphics.Bitmap.Config.Argb8888);
+
+            Android.Graphics.Canvas canvas = new Android.Graphics.Canvas(bitmap);
+
+            nativeView.Draw(canvas);
+
+            return bitmap;
+        }
+
         private Android.Views.View ConvertToNative(VisualElement view)
         {
-            var renderer = Xamarin.Forms.Platform.Android.Platform.CreateRendererWithContext(view, Xamarin.Forms.Forms.Context);
+            Context context = Xamarin.Forms.Forms.Context;
 
-            var nativeView = renderer.View;
+            IVisualElementRenderer renderer = Xamarin.Forms.Platform.Android.Platform.CreateRendererWithContext(view, context);
 
-            renderer.Tracker.UpdateLayout();
+            View nativeView = renderer.View;
 
-            var density = Xamarin.Forms.Forms.Context.Resources.DisplayMetrics.Density;
+            nativeView.RequestLayout();
 
-            var size = new Xamarin.Forms.Rectangle(0, 0, view.Width * density, view.Height * density);
+            float density = context.Resources.DisplayMetrics.Density;
 
-            var layoutParams = new Android.Views.ViewGroup.LayoutParams((int)size.Width, (int)size.Height);
+            double viewWidth = view.Width * density;
+
+            double viewHeight = view.Height * density;
+
+            (_, _, double width, double height) = new Xamarin.Forms.Rectangle(0, 0, viewWidth, viewHeight);
+
+            ViewGroup.LayoutParams layoutParams = new Android.Views.ViewGroup.LayoutParams((int)width, (int)height);
 
             nativeView.LayoutParameters = layoutParams;
 
-            nativeView.Layout(0, 0, (int)size.Width, (int)size.Height);
+            nativeView.Layout(0, 0, (int)width, (int)height);
 
             return nativeView;
         }

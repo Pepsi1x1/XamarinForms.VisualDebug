@@ -16,7 +16,12 @@ namespace XamarinForms.VisualDebug.iOS
 
         public byte[] Render(VisualElement formsView)
         {
-            var view = ConvertToNative(formsView);
+            UIView view = ConvertToNative(formsView);
+
+            if (view == null)
+            {
+                return new byte[0];
+            }
 
             UIGraphics.BeginImageContextWithOptions(view.Bounds.Size, opaque: true, scale: 0);
             
@@ -33,7 +38,17 @@ namespace XamarinForms.VisualDebug.iOS
                 UIGraphics.EndImageContext();
             }
 
+            if (image == null)
+            {
+                return new byte[0];
+            }
+
             NSData imageData = image.AsPNG();
+
+            if (imageData == null)
+            {
+                return new byte[0];
+            }
 
             return imageData.ToArray();
         }
@@ -44,7 +59,7 @@ namespace XamarinForms.VisualDebug.iOS
             
             Xamarin.Forms.Platform.iOS.Platform.SetRenderer(view, renderer);
 
-            return renderer.NativeView;
+            return renderer?.NativeView;
         }
     }
 }
