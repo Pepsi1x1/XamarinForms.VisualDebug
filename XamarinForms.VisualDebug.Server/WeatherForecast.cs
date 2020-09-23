@@ -1,6 +1,6 @@
 using System;
 
-namespace XamarinForms.VisualDebug.Server.Data
+namespace XamarinForms.VisualDebug.Server
 {
     public class WeatherForecast
     {
