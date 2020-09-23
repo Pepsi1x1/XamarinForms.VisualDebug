@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XamarinForms.VisualDebug.Core
+namespace VisualDebug.Models
 {
     public class RenderRepresentation
     {
@@ -24,7 +24,7 @@ namespace XamarinForms.VisualDebug.Core
 
         public override string ToString()
         {
-            return $"{this.VisualTypeName} Parent {this.ParentVisualTypeName} - WidthR {this.WidthRequest} HeightR {this.HeightRequest} Bounds {this.Bounds}{Environment.NewLine}";
+            return $"{VisualTypeName} Parent {ParentVisualTypeName} - WidthR {WidthRequest} HeightR {HeightRequest} Bounds {Bounds}{Environment.NewLine}";
         }
     }
 }

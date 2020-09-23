@@ -16,4 +16,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VisualDebug.Models\VisualDebug.Models.csproj" />
+  </ItemGroup>
+
 </Project>

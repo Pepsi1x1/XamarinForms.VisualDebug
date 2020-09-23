@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
+using VisualDebug.Models;
 using Xamarin.Forms;
 
 namespace XamarinForms.VisualDebug.Core

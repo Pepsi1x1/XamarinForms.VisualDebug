@@ -1,4 +1,4 @@
-﻿namespace XamarinForms.VisualDebug.Core
+﻿namespace VisualDebug.Models
 {
     public class RenderBounds
     {
@@ -12,7 +12,7 @@
 
         public override string ToString()
         {
-            return $"{{X={this.X} Y={this.Y} Width={this.Width} Height={this.Height}}}";
+            return $"{{X={X} Y={Y} Width={Width} Height={Height}}}";
         }
     }
 }
