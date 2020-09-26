@@ -44,9 +44,9 @@
           target="lib\netstandard2.0" />
     
     <file src="XamarinForms.VisualDebug.Droid\bin\Release\VisualDebug.Models.dll"
-          target="lib\netstandard2.0" />
+          target="lib\MonoAndroid90" />
     <file src="XamarinForms.VisualDebug.Droid\bin\Release\VisualDebug.Models.pdb"
-          target="lib\netstandard2.0" />
+          target="lib\MonoAndroid90" />
     <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Core.dll"
           target="lib\MonoAndroid90" />
     <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Core.pdb"
@@ -68,11 +68,6 @@
     <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.iOS.dll"
           target="lib\Xamarin.iOS10" />
     <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.iOS.pdb"
-          target="lib\Xamarin.iOS10" />
-
-    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.dll"
-          target="lib\Xamarin.iOS10" />
-    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.pdb"
           target="lib\Xamarin.iOS10" />
   </files>
 </package>
