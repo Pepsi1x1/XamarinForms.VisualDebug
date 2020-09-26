@@ -31,13 +31,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="certs\selfsigned.crt" />
+    <Content Include="certs\selfsigned.key" />
     <Content Include="css\appcss.css">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="chart.js">
+    <Content Include="main\server.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="data.js">
+    <Content Include="renderer\chart.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="renderer\data.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="index.html">
@@ -54,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="css\" />
+    <Folder Include="main\" />
+    <Folder Include="certs\" />
+    <Folder Include="renderer\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
 </Project>

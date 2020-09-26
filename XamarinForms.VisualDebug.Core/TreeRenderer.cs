@@ -2,45 +2,32 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Xml;
 using VisualDebug.Models;
 using Xamarin.Forms;
 
 namespace XamarinForms.VisualDebug.Core
 {
     public class TreeRenderer
-    {
+    {        
         public static void DebugWriteRenderTree(VisualElement renderedCard)
         {
-            var renderTreeJson = JsonConvert.SerializeObject(VisualHeirarchy(renderedCard));
+            var renderTreeJson = JsonConvert.SerializeObject(RenderVisualHeirarchy(renderedCard));
             Debug.WriteLine(renderTreeJson);
         }
 
-        public static string VisualHeirarchyString(VisualElement rootElement)
+        public static string RenderVisualHeirarchyToString(VisualElement rootElement)
         {
             string rets = RenderElementInfoString(rootElement);
 
             foreach (VisualElement childElement in rootElement.LogicalChildren)
             {
-                rets += VisualHeirarchyString(childElement);
+                rets += RenderVisualHeirarchyToString(childElement);
             }
 
             return rets;
         }
 
-        //public static string VisualHeirarchyJson(VisualElement rootElement)
-        //{
-        //    string rets = RenderElementInfoJson(rootElement);
-
-        //    foreach (VisualElement childElement in rootElement.LogicalChildren)
-        //    {
-        //        rets += VisualHeirarchyJson(childElement);
-        //    }
-
-        //    return rets;
-        //}
-
-        public static RenderRepresentation VisualHeirarchy(VisualElement rootElement)
+        public static RenderRepresentation RenderVisualHeirarchy(VisualElement rootElement)
         {
             RenderRepresentation rep = ToRenderRepresentation(rootElement);
 
@@ -66,7 +53,7 @@ namespace XamarinForms.VisualDebug.Core
 
                 INativeViewRenderer nativeViewRenderer = DependencyService.Get<INativeViewRenderer>();
 
-                rep.ViewPng = nativeViewRenderer.Render(childElement);
+                childRep.ViewPng = nativeViewRenderer.Render(childElement);
 
                 list.Add(childRep);
 
@@ -83,11 +70,11 @@ namespace XamarinForms.VisualDebug.Core
             return rep.ToString();
         }
 
-        private static string RenderElementInfoJson(VisualElement element)
+        public static string RenderVisualHeirarchyToJson(VisualElement element)
         {
-            RenderRepresentation rep = VisualHeirarchy(element);
+            RenderRepresentation rep = RenderVisualHeirarchy(element);
 
-            return JsonConvert.SerializeObject((object)rep, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(rep, Newtonsoft.Json.Formatting.Indented);
         }
 
         private static RenderRepresentation ToRenderRepresentation(VisualElement element)

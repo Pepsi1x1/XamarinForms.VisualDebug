@@ -1,5 +1,4 @@
 var d3 = require('d3');
-//var $ = require('jquery');
 
 var orgChart = (function () {
 	var _margin = {
@@ -19,13 +18,15 @@ var orgChart = (function () {
 		_loadFunction = null,
 		/* Configuration */
 		_duration = 750,        /* Duration of the animations */
-		_rectW = 150,        /* Width of the rectangle */
+		_rectW = 180,        /* Width of the rectangle */
 		_rectH = 120,         /* Height of the rectangle */
-		_rectSpacing = 40,          /* Spacing between the rectangles */
+		_rectSpacing = 120,          /* Spacing between the rectangles */
 		_fixedDepth = 200,         /* Height of the line for child nodes */
 		_mode = "line",     /* Choose the values "line" or "diagonal" */
 		_callerNode = null,
-		_callerMode = 0
+		_callerMode = 0,
+		_labelSize = 12,
+		_labelMargin = 3;
 
 		defLinearGradient = function (id, x1, y1, x2, y2, stopsdata) {
 			var gradient = _svgroot.append("svg:defs")
@@ -106,74 +107,90 @@ var orgChart = (function () {
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.attr("class", "box");
 
+			let currentYOffset = 5;
 			nodeEnter.append("text")
 				.attr("x", _rectW / 2)
-				.attr("y", 5)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "middle")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return d.VisualTypeName;
 				});
 
+			currentYOffset += _labelSize + _labelMargin + 6;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 20)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "WidthRequest: \r\n" + d.WidthRequest;
 				});
 
+			currentYOffset += _labelSize + _labelMargin;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 34)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "HeightRequest:" + d.HeightRequest;
 				});
 
+			currentYOffset += _labelSize + _labelMargin;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 48)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "X:" + d.Bounds.X;
 				});
 
+			currentYOffset += _labelSize + _labelMargin;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 62)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "Y:" + d.Bounds.Y;
 				});
 
+			currentYOffset += _labelSize + _labelMargin;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 76)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "Width:" + d.Bounds.Width;
 				});
 
+			currentYOffset += _labelSize + _labelMargin;
 			nodeEnter.append("text")
 				.attr("x", 5)
-				.attr("y", 90)
-				.attr("dy", "12px")
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
 				.attr("text-anchor", "left")
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "Height:" + d.Bounds.Height;
+				});
+
+			nodeEnter.append("image")
+				.attr("x", _rectW)
+				.attr("y", 0)
+				.attr("width", _rectW / 2)
+				.attr("height", _rectH)
+				.attr("xlink:href", function (d) {
+					return (d.ViewPng === null || d.ViewPng === undefined) ? undefined : "data:image/png;base64," + d.ViewPng;
 				});
 
 			// Transition nodes to their new position.
@@ -368,6 +385,8 @@ var orgChart = (function () {
 
 			var id = u_opts.id;
 
+			console.log(u_opts);
+			console.log(u_opts.treedata);
 			_loadFunction = u_opts.loadFunc;
 			_mode = u_opts.modus;
 			_root = u_opts.treedata;
@@ -423,6 +442,7 @@ var orgChart = (function () {
 			_root.y0 = height / 2;  // draw & animate from center
 
 			_root.children.forEach(collapse);
+
 			update(_root);
 
 			d3.select(id).style("height", height + _margin.top + _margin.bottom);

@@ -131,6 +131,16 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\XamarinForms.VisualDebug.Core\XamarinForms.VisualDebug.Core.csproj">
+      <Project>{76fc3717-e83a-4e95-a217-67625bb552a4}</Project>
+      <Name>XamarinForms.VisualDebug.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XamarinForms.VisualDebug.iOS\XamarinForms.VisualDebug.iOS.csproj">
+      <Project>{8fe1a92a-c129-40e9-8416-102fd0220954}</Project>
+      <Name>XamarinForms.VisualDebug.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinForms.VisualDebug\XamarinForms.VisualDebug.Sample.csproj">
       <Project>{623F7720-F5EB-40B6-9100-1F0F922FEEFF}</Project>
       <Name>XamarinForms.VisualDebug.Sample</Name>

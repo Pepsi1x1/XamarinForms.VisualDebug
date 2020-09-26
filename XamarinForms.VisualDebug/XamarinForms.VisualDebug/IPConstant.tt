@@ -1,0 +1,29 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+
+namespace XamarinForms.VisualDebug.Constants
+{
+    public static class IPConstant 
+    {
+        public const string LocalIP =<# // This code runs in the text template:
+        foreach (System.Net.NetworkInformation.NetworkInterface ni in System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces())
+        {
+            if (ni.NetworkInterfaceType == System.Net.NetworkInformation.NetworkInterfaceType.Ethernet)
+            {
+                foreach (System.Net.NetworkInformation.UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                {
+                    if (!ip.IsDnsEligible)
+                        continue;
+
+                        
+
+                    if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    {
+                        #> "<#= ip.Address.ToString() #>"; <#
+                    }
+                }
+            }
+        }#>
+
+    }
+}

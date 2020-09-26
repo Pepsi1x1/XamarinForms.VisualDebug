@@ -1,8 +1,6 @@
-function loadChilds(actualElement, successFunction) {
-	successFunction(treeData);
-}
+const { tree } = require("d3");
 
-var treeData =
+let treeData =
 {
 	"VisualTypeName": "Grid",
 	"ElementId": "9e5e5e28-1ddf-461d-a032-845025aa8e1e",
@@ -28,7 +26,7 @@ var treeData =
 			"Y": 0.0,
 			"Width": -1.0,
 			"Height": -1.0
-		},
+		}
 	}, {
 		"VisualTypeName": "Grid",
 		"ElementId": "ffadcd9c-66eb-4389-bf94-e8588ea14ab6",
@@ -41,7 +39,7 @@ var treeData =
 			"Y": 0.0,
 			"Width": -1.0,
 			"Height": -1.0
-		},
+		}
 	}, {
 		"VisualTypeName": "Frame",
 		"ElementId": "1f2e1f11-e9f3-44de-9754-7947fa7f4a57",
@@ -106,7 +104,7 @@ var treeData =
 							"Y": 0.0,
 							"Width": -1.0,
 							"Height": -1.0
-						},
+						}
 
 					}]
 				}]
@@ -122,7 +120,7 @@ var treeData =
 					"Y": 0.0,
 					"Width": -1.0,
 					"Height": -1.0
-				},
+				}
 
 			}, {
 				"VisualTypeName": "Frame",
@@ -162,7 +160,7 @@ var treeData =
 							"Y": 0.0,
 							"Width": -1.0,
 							"Height": -1.0
-						},
+						}
 
 					}, {
 						"VisualTypeName": "TextBlock",
@@ -176,7 +174,7 @@ var treeData =
 							"Y": 0.0,
 							"Width": -1.0,
 							"Height": -1.0
-						},
+						}
 
 					}]
 				}]
@@ -194,7 +192,7 @@ var treeData =
 			"Y": 0.0,
 			"Width": -1.0,
 			"Height": -1.0
-		},
+		}
 
 	}, {
 		"VisualTypeName": "TextBlock",
@@ -208,7 +206,7 @@ var treeData =
 			"Y": 0.0,
 			"Width": -1.0,
 			"Height": -1.0
-		},
+		}
 
 	}, {
 		"VisualTypeName": "Grid",
@@ -222,7 +220,7 @@ var treeData =
 			"Y": 0.0,
 			"Width": -1.0,
 			"Height": -1.0
-		},
+		}
 
 	}, {
 		"VisualTypeName": "Grid",
@@ -249,7 +247,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -263,7 +261,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -277,7 +275,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -291,7 +289,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -305,7 +303,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -319,7 +317,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -333,7 +331,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}, {
 			"VisualTypeName": "TextBlock",
@@ -347,7 +345,7 @@ var treeData =
 				"Y": 0.0,
 				"Width": -1.0,
 				"Height": -1.0
-			},
+			}
 
 		}]
 	}, {
@@ -401,7 +399,7 @@ var treeData =
 						"Y": 0.0,
 						"Width": -1.0,
 						"Height": -1.0
-					},
+					}
 
 				}]
 			}]
@@ -443,7 +441,7 @@ var treeData =
 						"Y": 0.0,
 						"Width": -1.0,
 						"Height": -1.0
-					},
+					}
 
 				}]
 			}]
@@ -499,7 +497,7 @@ var treeData =
 						"Y": 0.0,
 						"Width": -1.0,
 						"Height": -1.0
-					},
+					}
 
 				}, {
 					"VisualTypeName": "Grid",
@@ -552,7 +550,7 @@ var treeData =
 									"Y": 0.0,
 									"Width": -1.0,
 									"Height": -1.0
-								},
+								}
 
 							}]
 						}]
@@ -611,7 +609,7 @@ var treeData =
 						"Y": 0.0,
 						"Width": -1.0,
 						"Height": -1.0
-					},
+					}
 
 				}, {
 					"VisualTypeName": "Grid",
@@ -664,7 +662,7 @@ var treeData =
 									"Y": 0.0,
 									"Width": -1.0,
 									"Height": -1.0
-								},
+								}
 
 							}]
 						}]
@@ -675,8 +673,12 @@ var treeData =
 	}]
 };
 
+u_data = treeData;
+rawData = treeData ;
+
 module.exports = {
-	u_data: treeData,
+	u_data: u_data,
+	rawData: rawData,
 	loadChilds(actualElement, successFunction) {
 		loadChilds(actualElement, successFunction);
 	}

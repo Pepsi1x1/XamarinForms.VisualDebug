@@ -1,6 +1,8 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const myserver = require("./main/server.js");
+
 
 function createWindow() {
     // Create the browser window.
@@ -17,7 +19,9 @@ function createWindow() {
     mainWindow.loadFile('index.html')
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
+
+    myserver.setup(mainWindow);
 }
 
 // This method will be called when Electron has finished
@@ -25,6 +29,8 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
     createWindow()
+    
+    
 
     app.on('activate', function () {
         // On macOS it's common to re-create a window in the app when the
@@ -42,3 +48,4 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+

@@ -89,10 +89,21 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XamarinForms.VisualDebug.Core\XamarinForms.VisualDebug.Core.csproj">
+      <Project>{76fc3717-e83a-4e95-a217-67625bb552a4}</Project>
+      <Name>XamarinForms.VisualDebug.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XamarinForms.VisualDebug.Droid\XamarinForms.VisualDebug.Droid.csproj">
+      <Project>{2928b5c7-777e-44c3-bfa5-d1e81ddc4c6e}</Project>
+      <Name>XamarinForms.VisualDebug.Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinForms.VisualDebug\XamarinForms.VisualDebug.Sample.csproj">
       <Project>{623F7720-F5EB-40B6-9100-1F0F922FEEFF}</Project>
       <Name>XamarinForms.VisualDebug.Sample</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

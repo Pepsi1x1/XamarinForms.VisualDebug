@@ -5,11 +5,15 @@
 // selectively enable features needed in the rendering
 // process.
 window.$ = window.jQuery = require('jquery');
-var data = require("./data.js");
-var orgChart = require("./chart.js");
+//var data = require("./renderer/data.js");
+var orgChart = require("./renderer/chart.js");
+const { ipcRenderer } = require('electron');
 
 
 
+function loadChilds(actualElement, successFunction) {
+    successFunction(treeData);
+}
 
 //
 document.addEventListener('DOMContentLoaded', function () {
@@ -25,6 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //    orgChart.initTree({ data: data.u_data, modus: "diagonal", loadFunc: data.loadChilds, id: '#body' });
     //});
 
-    orgChart.initTree({ data: data.u_data, modus: "diagonal", loadFunc: data.loadChilds, id: '#body' });
+    //orgChart.initTree({ data: data.u_data, modus: "diagonal", loadFunc: loadChilds, id: '#body' });
 
 });
+
+ipcRenderer.on('treeDataChanged', (event, arg) => {
+    console.log('treeDataChanged received') // prints "ping"
+    orgChart.initTree({ data: arg, modus: "diagonal", loadFunc: loadChilds, id: '#body' });
+})

@@ -21,7 +21,12 @@ namespace XamarinForms.VisualDebug.Droid
         {
             View nativeView = this.ConvertToNative(view);
 
-            if (view.Width < 0 || view.Height < 0)
+            if (view.Width <= 0 || view.Height <= 0)
+            {
+                return new byte[0];
+            }
+
+            if (nativeView.Width <= 0 || nativeView.Height <= 0)
             {
                 return new byte[0];
             }
@@ -45,6 +50,8 @@ namespace XamarinForms.VisualDebug.Droid
             Android.Graphics.Canvas canvas = new Android.Graphics.Canvas(bitmap);
 
             nativeView.Draw(canvas);
+
+            nativeView.Invalidate();
 
             return bitmap;
         }

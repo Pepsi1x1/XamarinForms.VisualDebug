@@ -23,21 +23,11 @@ namespace XamarinForms.VisualDebug.iOS
                 return new byte[0];
             }
 
-            UIGraphics.BeginImageContextWithOptions(view.Bounds.Size, opaque: true, scale: 0);
-            
-            UIImage image;
-
-            try
-            {
-                view.Draw(view.Bounds);
-
-                image = UIGraphics.GetImageFromCurrentImageContext();
-            }
-            finally
-            {
-                UIGraphics.EndImageContext();
-            }
-
+            var renderer = new UIGraphicsImageRenderer(view.Bounds.Size);
+            UIImage image = renderer.CreateImage((rendererContext) => {
+                view.Layer.RenderInContext(rendererContext.CGContext);
+            });
+                        
             if (image == null)
             {
                 return new byte[0];
