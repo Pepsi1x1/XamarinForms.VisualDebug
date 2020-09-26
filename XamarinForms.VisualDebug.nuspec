@@ -8,7 +8,7 @@
     <owners>David Thompson</owners>
     <projectUrl>https://github.com/Pepsi1x1/XamarinForms.VisualDebug</projectUrl>
     <license type="file">LICENSE.md</license>
-    <iconUrl></iconUrl>
+    <iconUrl>https://github.com/Pepsi1x1/XamarinForms.VisualDebug/raw/master/icon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <releaseNotes></releaseNotes>
     <description>A Xamarin.Forms library for Xamarin.Android and Xamarin.iOS to render an interactive tree diagram from your visual heirarchy.</description>
