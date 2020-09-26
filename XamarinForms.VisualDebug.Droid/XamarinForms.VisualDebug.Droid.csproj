@@ -60,9 +60,6 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>4.5.0.495</Version>
     </PackageReference>
-    <PackageReference Include="Zeroconf">
-      <Version>3.4.2</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\strings.xml" />

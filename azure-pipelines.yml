@@ -1,0 +1,44 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - README.md
+
+pool:
+  vmImage: 'macOS-10.14'
+  demands: msbuild
+
+variables:
+  solution: '**/XamarinForms.VisualDebug.AzurePipeline.sln'
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.artifactStagingDirectory)/$(BuildConfiguration)'
+
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: 
+    checkLatest: true
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: MSBuild@1
+  displayName: 'Build solution XamarinForms.VisualDebug.AzurePipeline.sln'
+  inputs:
+    solution: '$(solution)'
+    configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'XamarinForms.VisualDebug.nuspec'
+    versioningScheme: 'off'
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'

@@ -25,6 +25,14 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "XamarinForms.VisualDebug.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualDebug.Models", "VisualDebug.Models\VisualDebug.Models.csproj", "{7AF15D3B-BBBA-4A79-A453-97EEE9EC9E2C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{BC086F80-8481-423C-9A88-9757A390FB06}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		XamarinForms.VisualDebug.nuspec = XamarinForms.VisualDebug.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>XamarinForms.VisualDebug</id>
+    <title>XamarinForms.VisualDebug</title>
+    <version>0.0.1</version>
+    <authors>David Thompson</authors>
+    <owners>David Thompson</owners>
+    <projectUrl>https://github.com/Pepsi1x1/XamarinForms.VisualDebug</projectUrl>
+    <license type="file">LICENSE.md</license>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <releaseNotes></releaseNotes>
+    <description>A Xamarin.Forms library for Xamarin.Android and Xamarin.iOS to render an interactive tree diagram from your visual heirarchy.</description>
+    <copyright>Copyright © 2020</copyright>
+    <tags>Xamarin.Forms Xamarin Xam XF Visual Debug VisualDebug Heirarchy Visualiser Visualizer Inspector</tags>
+    <dependencies>
+    <group targetFramework="netstandard2.0">
+        <dependency id="Xamarin.Forms"
+                    version="4.5.0.495" />
+        <dependency id="Newtonsoft.Json"
+                    version="12.0.3" />
+      </group>
+
+      <group targetFramework="MonoAndroid90">
+        <dependency id="Xamarin.Forms"
+                    version="4.5.0.495" />
+      </group>
+      <group targetFramework="Xamarin.iOS10">
+        <dependency id="Xamarin.Forms"
+                    version="4.5.0.495" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="LICENSE.md" target="" />
+    <file src="VisualDebug.Models\bin\Release\netstandard2.0\VisualDebug.Models.dll"
+          target="lib\netstandard2.0" />
+    <file src="VisualDebug.Models\bin\Release\netstandard2.0\VisualDebug.Models.pdb"
+          target="lib\netstandard2.0" />
+    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.dll"
+          target="lib\netstandard2.0" />
+    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.pdb"
+          target="lib\netstandard2.0" />
+    
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\VisualDebug.Models.dll"
+          target="lib\netstandard2.0" />
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\VisualDebug.Models.pdb"
+          target="lib\netstandard2.0" />
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Core.dll"
+          target="lib\MonoAndroid90" />
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Core.pdb"
+          target="lib\MonoAndroid90" />
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Droid.dll"
+          target="lib\MonoAndroid90" />
+    <file src="XamarinForms.VisualDebug.Droid\bin\Release\XamarinForms.VisualDebug.Droid.pdb"
+          target="lib\MonoAndroid90" />
+
+
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\VisualDebug.Models.dll"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\VisualDebug.Models.pdb"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.Core.dll"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.Core.pdb"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.iOS.dll"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.iOS\bin\Release\XamarinForms.VisualDebug.iOS.pdb"
+          target="lib\Xamarin.iOS10" />
+
+    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.dll"
+          target="lib\Xamarin.iOS10" />
+    <file src="XamarinForms.VisualDebug.Core\bin\Release\netstandard2.0\XamarinForms.VisualDebug.Core.pdb"
+          target="lib\Xamarin.iOS10" />
+  </files>
+</package>
