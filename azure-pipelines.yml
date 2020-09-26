@@ -16,9 +16,10 @@ variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.artifactStagingDirectory)/$(BuildConfiguration)'
 
+steps:
 - task: NuGetToolInstaller@1
   inputs:
-    versionSpec: 
+    versionSpec: 5.x
     checkLatest: true
 
 - task: NuGetCommand@2
