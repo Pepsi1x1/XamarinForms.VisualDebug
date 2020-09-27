@@ -19,7 +19,7 @@ var orgChart = (function () {
 		/* Configuration */
 		_duration = 750,        /* Duration of the animations */
 		_rectW = 180,        /* Width of the rectangle */
-		_rectH = 120,         /* Height of the rectangle */
+		_rectH = 150,         /* Height of the rectangle */
 		_rectSpacing = 120,          /* Spacing between the rectangles */
 		_fixedDepth = 200,         /* Height of the line for child nodes */
 		_mode = "line",     /* Choose the values "line" or "diagonal" */
@@ -182,6 +182,36 @@ var orgChart = (function () {
 				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
 				.text(function (d) {
 					return "Height:" + d.Bounds.Height;
+				});
+
+			currentYOffset += _labelSize + _labelMargin;
+			nodeEnter.append("text")
+				.attr("x", 5)
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
+				.attr("text-anchor", "left")
+				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
+				.text(function (d) {
+					if (d.Margin === null || d.Margin === undefined) {
+						return "Margin: N/A";
+					}
+					
+					return "Margin:" + d.Margin.Left + "," + d.Margin.Top + "," + d.Margin.Right + "," + d.Margin.Bottom;
+				});
+
+			currentYOffset += _labelSize + _labelMargin;
+			nodeEnter.append("text")
+				.attr("x", 5)
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
+				.attr("text-anchor", "left")
+				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
+				.text(function (d) {
+					if (d.Padding  === null || d.Padding === undefined) {
+						return "Padding: N/A";
+					}
+
+					return "Padding:" + d.Padding.Left + "," + d.Padding.Top + "," + d.Padding.Right + "," + d.Padding.Bottom;
 				});
 
 			nodeEnter.append("image")

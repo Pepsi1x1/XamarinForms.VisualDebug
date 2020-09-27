@@ -79,7 +79,7 @@ namespace XamarinForms.VisualDebug.Core
 
         private static RenderRepresentation ToRenderRepresentation(VisualElement element)
         {
-            return new RenderRepresentation()
+            var rep = new RenderRepresentation()
             {
                 ElementId = element.Id,
                 VisualTypeName = element.GetType().Name,
@@ -95,6 +95,32 @@ namespace XamarinForms.VisualDebug.Core
                     Width = element.Bounds.Width
                 }
             };
+
+            if (element is View repv)
+            {
+                rep.Margin = new RenderThickness
+                {
+                    Left = repv.Margin.Left,
+                    Top = repv.Margin.Top,
+                    Right = repv.Margin.Right,
+                    Bottom = repv.Margin.Bottom
+                };
+            }
+
+            var paddingProp = element.GetType().GetProperty("Padding");
+            if (!(paddingProp is null))
+            {
+                var padding = (Thickness)paddingProp.GetValue(element);
+                rep.Padding = new RenderThickness
+                {
+                    Left   = padding.Left,
+                    Top    = padding.Top,
+                    Right  = padding.Right,
+                    Bottom = padding.Bottom
+                };
+            }
+
+            return rep;
         }
 
         

@@ -15,7 +15,7 @@ namespace XamarinForms.VisualDebug.Core
 
         private static readonly System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient(httpClientHandler);
 
-        public async System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> SendToServer(string packet, string ip = "192.168.1.153", string port = "3000")
+        public async System.Threading.Tasks.Task<System.Net.Http.HttpResponseMessage> SendToServer(string packet, string ip = "", string port = "3000")
         {
             if(string.IsNullOrWhiteSpace(ip))
             {

@@ -19,6 +19,10 @@ namespace VisualDebug.Models
 
         public RenderBounds Bounds { get; set; }
 
+        public RenderThickness Margin { get; set; }
+
+        public RenderThickness Padding { get; set; }
+
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, PropertyName = "children", Required = Newtonsoft.Json.Required.AllowNull)]
         [System.Runtime.Serialization.DataMember(EmitDefaultValue = false, IsRequired = false, Name = "children")]
         public List<RenderRepresentation> Children { get; set; }

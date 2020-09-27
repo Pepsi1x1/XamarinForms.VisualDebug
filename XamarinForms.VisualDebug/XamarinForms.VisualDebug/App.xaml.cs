@@ -30,7 +30,7 @@ namespace XamarinForms.VisualDebug.Sample
                     ip = XamarinForms.VisualDebug.Constants.IPConstant.LocalIP;
                 }
 
-                var response = await Sender.SendToServer(rep).ConfigureAwait(false);
+                var response = await Sender.SendToServer(rep, ip).ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine("Success!");

@@ -35,14 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="IPConstant.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IPConstant.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="RenderSamples.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
