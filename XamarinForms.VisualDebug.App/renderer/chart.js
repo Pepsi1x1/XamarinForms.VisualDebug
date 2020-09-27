@@ -19,7 +19,7 @@ var orgChart = (function () {
 		/* Configuration */
 		_duration = 750,        /* Duration of the animations */
 		_rectW = 180,        /* Width of the rectangle */
-		_rectH = 150,         /* Height of the rectangle */
+		_rectH = 180,         /* Height of the rectangle */
 		_rectSpacing = 120,          /* Spacing between the rectangles */
 		_fixedDepth = 200,         /* Height of the line for child nodes */
 		_mode = "line",     /* Choose the values "line" or "diagonal" */
@@ -212,6 +212,36 @@ var orgChart = (function () {
 					}
 
 					return "Padding:" + d.Padding.Left + "," + d.Padding.Top + "," + d.Padding.Right + "," + d.Padding.Bottom;
+				});
+
+			currentYOffset += _labelSize + _labelMargin;
+			nodeEnter.append("text")
+				.attr("x", 5)
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
+				.attr("text-anchor", "left")
+				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
+				.text(function (d) {
+					if (d.HorizontalOptions === null || d.HorizontalOptions === undefined) {
+						return "HorizontalOptions: N/A";
+					}
+
+					return "HorizontalOptions:" + d.HorizontalOptions;
+				});
+
+			currentYOffset += _labelSize + _labelMargin;
+			nodeEnter.append("text")
+				.attr("x", 5)
+				.attr("y", currentYOffset)
+				.attr("dy", _labelSize + "px")
+				.attr("text-anchor", "left")
+				.style("cursor", function (d) { return (d.children || d._children || d.hasChild) ? "pointer" : "default"; })
+				.text(function (d) {
+					if (d.VerticalOptions === null || d.VerticalOptions === undefined) {
+						return "VerticalOptions: N/A";
+					}
+
+					return "VerticalOptions:" + d.VerticalOptions;
 				});
 
 			nodeEnter.append("image")

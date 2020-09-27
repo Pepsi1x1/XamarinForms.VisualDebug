@@ -96,14 +96,20 @@ namespace XamarinForms.VisualDebug.Core
                 }
             };
 
-            if (element is View repv)
+            
+
+            if (element is View view)
             {
+                rep.HorizontalOptions = LayoutOptionsToString(view.HorizontalOptions);
+
+                rep.VerticalOptions = LayoutOptionsToString(view.VerticalOptions);
+
                 rep.Margin = new RenderThickness
                 {
-                    Left = repv.Margin.Left,
-                    Top = repv.Margin.Top,
-                    Right = repv.Margin.Right,
-                    Bottom = repv.Margin.Bottom
+                    Left = view.Margin.Left,
+                    Top = view.Margin.Top,
+                    Right = view.Margin.Right,
+                    Bottom = view.Margin.Bottom
                 };
             }
 
@@ -123,6 +129,10 @@ namespace XamarinForms.VisualDebug.Core
             return rep;
         }
 
-        
+        private static string LayoutOptionsToString(LayoutOptions options)
+        {
+            return options.Alignment + (options.Expands ? "AndExpand" : "");
+        }
+
     }
 }

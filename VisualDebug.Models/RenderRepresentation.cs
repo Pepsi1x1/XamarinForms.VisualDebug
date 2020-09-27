@@ -23,11 +23,15 @@ namespace VisualDebug.Models
 
         public RenderThickness Padding { get; set; }
 
+        public string HorizontalOptions { get; set; }
+
+        public string VerticalOptions { get; set; }
+
         [Newtonsoft.Json.JsonProperty(DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore, PropertyName = "children", Required = Newtonsoft.Json.Required.AllowNull)]
         [System.Runtime.Serialization.DataMember(EmitDefaultValue = false, IsRequired = false, Name = "children")]
         public List<RenderRepresentation> Children { get; set; }
 
-        public byte[] ViewPng { get; set; }
+        public byte[] ViewPng { get; set; }        
 
         public override string ToString()
         {
