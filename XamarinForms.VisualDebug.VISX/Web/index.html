@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--from file-->
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta charset="utf-8" />
+    <!-- This is to make sure your relative image links show up nicely. -->
+    <base href="file:///{0}/" />
+    <title>Render Tree</title>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-shim.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+    <!--[if lte IE 8]><script src='https://raw.githubusercontent.com/mhemesath/r2d3/master/r2d3.min.js' charset='utf-8'></script></script><![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src='https://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+    <!--<![endif]-->
+    <!-- Here is where the custom style sheet is inserted as well as js setup code. -->
+    {1}
+</head>
+<body>
+    {2}
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {{
+            orgChart.initTree("body", u_data, "diagonal", loadChilds);
+
+        }});</script>
+</html>

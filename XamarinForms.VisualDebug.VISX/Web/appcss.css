@@ -1,0 +1,36 @@
+.node {
+	cursor: default;
+}
+
+	.node text {
+		font: 12px sans-serif;
+		fill: #FFFFFF;
+	}
+
+	.node rect {
+	}
+
+/* Lines */
+.link {
+	fill: none;
+	stroke: #424242;
+	stroke-width: 1.5px;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 98%;
+}
+
+#body {
+	cursor: move;
+	height: 100%;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid black;
+	margin: 0px 0px 10px 0px;
+}
+
