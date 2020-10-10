@@ -9,8 +9,8 @@ A library and client app to view the visual heirarchy of your Xamarin app pages 
 Install the XamarinForms.VisualDebug Nuget packages into your Core AND platform specific projects
 
 ```sh
-Install-Package XamarinForms.VisualDebug -Version 0.0.1
-dotnet add package XamarinForms.VisualDebug --version 0.0.1
+Install-Package XamarinForms.VisualDebug
+dotnet add package XamarinForms.VisualDebug
 ```
 
 ## Core project
