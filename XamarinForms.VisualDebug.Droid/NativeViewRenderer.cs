@@ -19,7 +19,11 @@ namespace XamarinForms.VisualDebug.Droid
 
         public byte[] Render(VisualElement view)
         {
-            View nativeView = this.ConvertToNative(view);
+            Context context = Xamarin.Forms.Forms.Context;
+
+            IVisualElementRenderer renderer = Xamarin.Forms.Platform.Android.Platform.CreateRendererWithContext(view, context);
+
+            View nativeView = this.ConvertToNative(context, renderer, view);
 
             if (view.Width <= 0 || view.Height <= 0)
             {
@@ -36,7 +40,15 @@ namespace XamarinForms.VisualDebug.Droid
             using (MemoryStream stream = new System.IO.MemoryStream())
             {
                 image.Compress(Android.Graphics.Bitmap.CompressFormat.Png, 0, stream);
-                
+
+                image.Dispose();
+
+                Xamarin.Forms.Platform.Android.Platform.ClearRenderer(renderer.View);
+
+                renderer.Dispose();
+
+                renderer = null;
+
                 byte[] imageBytes = stream.ToArray();
                 
                 return imageBytes;
@@ -51,20 +63,14 @@ namespace XamarinForms.VisualDebug.Droid
 
             nativeView.Draw(canvas);
 
-            nativeView.Invalidate();
+            canvas.Dispose();
 
             return bitmap;
         }
 
-        private Android.Views.View ConvertToNative(VisualElement view)
+        private Android.Views.View ConvertToNative(Context context, IVisualElementRenderer renderer, VisualElement view)
         {
-            Context context = Xamarin.Forms.Forms.Context;
-
-            IVisualElementRenderer renderer = Xamarin.Forms.Platform.Android.Platform.CreateRendererWithContext(view, context);
-
             View nativeView = renderer.View;
-
-            nativeView.RequestLayout();
 
             float density = context.Resources.DisplayMetrics.Density;
 
@@ -79,6 +85,8 @@ namespace XamarinForms.VisualDebug.Droid
             nativeView.LayoutParameters = layoutParams;
 
             nativeView.Layout(0, 0, (int)width, (int)height);
+
+            layoutParams.Dispose();
 
             return nativeView;
         }
