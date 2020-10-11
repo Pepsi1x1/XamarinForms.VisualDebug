@@ -28,24 +28,9 @@ For the simplest use case in App.xaml.cs include the following
             Current.PageAppearing += Current_PageAppearing;
         }
 
-        private static XamarinForms.VisualDebug.Core.Sender Sender = new XamarinForms.VisualDebug.Core.Sender();
-
         private void Current_PageAppearing(object sender, Page e)
         {
-            var rep = XamarinForms.VisualDebug.Core.TreeRenderer.RenderVisualHeirarchyToJson(e);
-
-            System.Threading.Tasks.Task.Run(async () =>
-            {
-                var response = await Sender.SendToServer(rep).ConfigureAwait(false);
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Success!");
-                }
-                else
-                {
-                    Console.WriteLine(response.ReasonPhrase);
-                }
-            });
+            XamarinForms.VisualDebug.Core.Utility.RenderAndSend(e);
         }
 ```
 
@@ -63,7 +48,7 @@ and the following snippet consumes that:
                     ip = XamarinForms.VisualDebug.Constants.IPConstant.LocalIP;
                 }
 
-                var response = await Sender.SendToServer(rep, ip).ConfigureAwait(false);
+                XamarinForms.VisualDebug.Core.Utility.RenderAndSend(e, ip);
 ```
 
 ## iOS
