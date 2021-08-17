@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VisualDebug.Models;
@@ -29,7 +28,7 @@ namespace XamarinForms.VisualDebug.Core
 
         public static RenderRepresentation RenderVisualHeirarchy(VisualElement rootElement)
         {
-            RenderRepresentation rep = ToRenderRepresentation(rootElement);
+            RenderRepresentation rep = rootElement.ToRenderRepresentation();
 
             INativeViewRenderer nativeViewRenderer = DependencyService.Get<INativeViewRenderer>();
 
@@ -49,7 +48,7 @@ namespace XamarinForms.VisualDebug.Core
 
             foreach (VisualElement childElement in rootElement.LogicalChildren)
             {
-                var childRep = ToRenderRepresentation(childElement);
+                var childRep = childElement.ToRenderRepresentation();
 
                 INativeViewRenderer nativeViewRenderer = DependencyService.Get<INativeViewRenderer>();
 
@@ -65,7 +64,7 @@ namespace XamarinForms.VisualDebug.Core
 
         private static string RenderElementInfoString(VisualElement element)
         {
-            RenderRepresentation rep = ToRenderRepresentation(element);
+            RenderRepresentation rep = element.ToRenderRepresentation();
 
             return rep.ToString();
         }
@@ -76,63 +75,5 @@ namespace XamarinForms.VisualDebug.Core
 
             return JsonConvert.SerializeObject(rep, Newtonsoft.Json.Formatting.Indented);
         }
-
-        private static RenderRepresentation ToRenderRepresentation(VisualElement element)
-        {
-            var rep = new RenderRepresentation()
-            {
-                ElementId = element.Id,
-                VisualTypeName = element.GetType().Name,
-                ParentVisualTypeName = element.Parent?.GetType().Name,
-                ParentId = element.Parent?.Id ?? Guid.Empty,
-                WidthRequest = element.WidthRequest,
-                HeightRequest = element.HeightRequest,
-                Bounds = new RenderBounds()
-                {
-                    X = element.Bounds.X,
-                    Y = element.Bounds.Y,
-                    Height = element.Bounds.Height,
-                    Width = element.Bounds.Width
-                }
-            };
-
-            
-
-            if (element is View view)
-            {
-                rep.HorizontalOptions = LayoutOptionsToString(view.HorizontalOptions);
-
-                rep.VerticalOptions = LayoutOptionsToString(view.VerticalOptions);
-
-                rep.Margin = new RenderThickness
-                {
-                    Left = view.Margin.Left,
-                    Top = view.Margin.Top,
-                    Right = view.Margin.Right,
-                    Bottom = view.Margin.Bottom
-                };
-            }
-
-            var paddingProp = element.GetType().GetProperty("Padding");
-            if (!(paddingProp is null))
-            {
-                var padding = (Thickness)paddingProp.GetValue(element);
-                rep.Padding = new RenderThickness
-                {
-                    Left   = padding.Left,
-                    Top    = padding.Top,
-                    Right  = padding.Right,
-                    Bottom = padding.Bottom
-                };
-            }
-
-            return rep;
-        }
-
-        private static string LayoutOptionsToString(LayoutOptions options)
-        {
-            return options.Alignment + (options.Expands ? "AndExpand" : "");
-        }
-
     }
 }
